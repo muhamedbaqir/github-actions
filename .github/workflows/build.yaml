@@ -9,9 +9,7 @@ jobs:
         uses: actions/checkout@v4
       - name: install dependencies
         run: sudo apt update && sudo apt install -y nodejs golang && sudo snap install trivy
-      - name: build backend
-        run: echo "foo"
       - name: build frontend
         run: cd frontend;npm ci;npx ng build; cd .. ; sudo cp -r frontend/dist/frontend/browser backend/cmd/strichliste/frontendDist
       - name: build backend
-        run: cd backend && go run ./cmd/strichliste/main.go 
+        run: cd backend && go test ./cmd/strichliste/main.go 
