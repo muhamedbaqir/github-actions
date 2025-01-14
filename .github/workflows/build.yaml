@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: install dependencies
-        run: sudo apt update && sudo apt install -y nodejs golang && snap install -y trivy
+        run: sudo apt update && sudo apt install -y nodejs golang && sudo snap install trivy
       - name: build backend
         run: echo "foo"
       - name: build frontend
