@@ -5,10 +5,10 @@ jobs:
   backend:
     runs-on: ubuntu-latest
     steps:
+      - name: checkout
+        run: actions/checkout@v4
       - name: install dependencies
         run: sudo apt update && sudo apt install -y nodejs golang && sudo snap install trivy
-      - name: ls 
-        run: ls -a; pwd;
       - name: build backend
         run: echo "foo"
       - name: build frontend
