@@ -12,8 +12,3 @@ jobs:
         run: cd frontend;npm ci;npx ng build
       - name: deploy
         run: 
-
-
-
-  frontend:
-   
