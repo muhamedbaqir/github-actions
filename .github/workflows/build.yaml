@@ -8,6 +8,7 @@ jobs:
       - name: install dependencies
         run: apt install node go trivy 
       - name: build backend
+        run: echo "foo"
       - name: build frontend
         run: cd frontend;npm ci;npx ng build
       - name: deploy
