@@ -11,4 +11,4 @@ jobs:
       - name: build frontend
         run: cd frontend;npm ci;npx ng build
       - name: deploy
-        run: 
+        run: echo "foo"
