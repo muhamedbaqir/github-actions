@@ -12,6 +12,6 @@ jobs:
       - name: build backend
         run: echo "foo"
       - name: build frontend
-        run: cd frontend;npm ci;npx ng build
-      - name: deploy
-        run: echo "foo"
+        run: cd frontend;npm ci;npx ng build; cd .. ; sudo cp -r frontend/dist/frontend/browser backend/cmd/strichliste/frontendDist
+      - name: build backend
+        run: cd backend && go run ./cmd/strichliste/main.go 
