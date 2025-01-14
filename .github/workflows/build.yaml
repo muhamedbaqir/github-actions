@@ -1,0 +1,18 @@
+on:
+  push:
+    branches: ["main"]
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: install dependencies
+        run: apt install node go trivy 
+      - name: build backend
+      - name: build frontend
+        run: cd frontend;npm ci;npx ng build
+      - name: deploy
+
+
+
+  frontend:
+   
