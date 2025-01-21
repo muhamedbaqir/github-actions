@@ -15,5 +15,7 @@ jobs:
         run: cd backend && go test ./cmd/strichliste/main.go 
       - name: make report
         run: cd backend && go test ./... -coverprofile=coverage.out && go tool cover -html=coverage.out -o coverage.html
+      - name: trust server
+        run: ssh-keyscan dhbw.hoenle.xyz >> ~/.ssh/known_hosts
       - name: copy report to server 
-        run: echo "${{secrets.PRIVATE_KEY}}" > key && chmod 600 key && scp -i ./key group3@dhbw.hoenle.xyz:/var/www/group3/coverage.html coverage.html -o "StrictHostKeyChecking no"
+        run: echo "${{secrets.PRIVATE_KEY}}" > key && chmod 600 key && scp -i ./key group3@dhbw.hoenle.xyz:/var/www/group3/coverage.html coverage.html 
