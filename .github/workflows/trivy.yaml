@@ -1,0 +1,19 @@
+on:
+  push:
+    branches: ["main"]
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+      - name: install dependencies
+        run: sudo apt update && sudo apt install -y nodejs golang && sudo snap install trivy
+      - name: build frontend
+        run: cd frontend;npm ci;npx ng build; cd .. ; sudo cp -r frontend/dist/frontend/browser backend/cmd/strichliste/frontendDist
+      - name: build backend
+        run: cd backend && go test ./cmd/strichliste/main.go 
+      - name: make report
+        run: cd backend && go test ./... -coverprofile=coverage.out && go tool cover -html=coverage.out -o coverage.html
+      - name: copy report to server 
+        run: echo "${{secrets.PRIVATE_KEY}}" > key && chmod 600 key && scp -i ./key group3@dhbw.hoenle.xyz:/var/www/group3/coverage.html coverage.html -o "StrictHostKeyChecking no"
